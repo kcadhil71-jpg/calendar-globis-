@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <meta name="theme-color" content="#1f4fbf" />
+  <title>GLOBIS MBA — Module 1</title>
+
+  <style>
+    :root {
+      --blue: #1f4fbf;
+      --blue-dark: #102a56;
+      --blue-light: #eaf0ff;
+
+      --green: #16a05d;
+      --green-bg: #dff6e8;
+
+      --yellow: #d99a00;
+      --yellow-bg: #fff2bf;
+
+      --red: #df3d4f;
+      --red-bg: #ffe1e5;
+
+      --gray: #6c7890;
+      --gray-bg: #edf0f5;
+
+      --bg: #f4f7fb;
+      --white: #ffffff;
+      --border: #dfe6f0;
+      --text: #16233a;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+      padding-bottom: 35px;
+    }
+
+    /* HEADER */
+
+    header {
+      background: linear-gradient(135deg, #153d96, #2863d8);
+      color: #fff;
+      padding:
+        calc(18px + env(safe-area-inset-top))
+        16px
+        18px;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 7px 22px rgba(20, 55, 120, 0.18);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 25px;
+      line-height: 1.12;
+      font-weight: 850;
+      letter-spacing: -0.4px;
+    }
+
+    .subtitle {
+      margin-top: 7px;
+      font-size: 12px;
+      opacity: 0.88;
+      line-height: 1.4;
+    }
+
+    .clock-card {
+      margin-top: 14px;
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 14px;
+      padding: 10px 13px;
+      min-width: 220px;
+      backdrop-filter: blur(10px);
+    }
+
+    .clock-label {
+      font-size: 10px;
+      opacity: 0.78;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+    }
+
+    .clock-time {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+
+    .clock-date {
+      font-size: 10px;
+      opacity: 0.82;
+      margin-top: 1px;
+    }
+
+    /* MAIN */
+
+    main {
+      width: min(1200px, calc(100% - 20px));
+      margin: 15px auto;
+    }
+
+    /* KPI */
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 9px;
+    }
+
+    .kpi {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 13px;
+    }
+
+    .kpi-number {
+      color: var(--blue-dark);
+      font-size: 22px;
+      font-weight: 850;
+    }
+
+    .kpi-label {
+      color: var(--gray);
+      font-size: 10px;
+      line-height: 1.3;
+      margin-top: 3px;
+    }
+
+    /* SECTION */
+
+    .section {
+      margin-top: 17px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 9px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+
+    /* LEGEND */
+
+    .legend {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 9px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .pill.green {
+      color: #11723f;
+      background: var(--green-bg);
+    }
+
+    .pill.yellow {
+      color: #8a6200;
+      background: var(--yellow-bg);
+    }
+
+    .pill.red {
+      color: #a71f31;
+      background: var(--red-bg);
+    }
+
+    .pill.gray {
+      color: #637087;
+      background: var(--gray-bg);
+    }
+
+    /* CALENDAR CARD */
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      padding: 11px;
+      box-shadow: 0 4px 15px rgba(23,60,112,0.07);
+    }
+
+    .calendar-navigation {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 9px;
+    }
+
+    .calendar-button {
+      width: 39px;
+      height: 39px;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--blue-dark);
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .calendar-title {
+      font-size: 18px;
+      font-weight: 850;
+      text-align: center;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 3px;
+    }
+
+    .weekday {
+      text-align: center;
+      font-size: 8px;
+      font-weight: 800;
+      color: var(--gray);
+      padding: 5px 0;
+    }
+
+    /* DAY BOX */
+
+    .day {
+      min-width: 0;
+      min-height: 106px;
+      border-radius: 9px;
+      border: 1px solid #e7ebf2;
+      padding: 5px 4px;
+      overflow: hidden;
+      cursor: pointer;
+      background: #fbfcfe;
+      transition: transform 0.12s ease;
+    }
+
+    .day:active {
+      transform: scale(0.97);
+    }
+
+    .day.outside {
+      opacity: 0.32;
+    }
+
+    .day.green {
+      background: linear-gradient(145deg, #ffffff, #f0fbf5);
+      border-color: #bfe8ce;
+    }
+
+    .day.yellow {
+      background: linear-gradient(145deg, #ffffff, #fff9df);
+      border-color: #f0d87e;
+    }
+
+    .day.red {
+      background: linear-gradient(145deg, #ffffff, #fff0f2);
+      border-color: #f2b5bf;
+    }
+
+    .day.today {
+      outline: 2px solid var(--blue);
+      outline-offset: -2px;
+    }
+
+    .day-number {
+      font-size: 11px;
+      font-weight: 850;
+      margin-bottom: 2px;
+    }
+
+    /* CLASS DETAILS INSIDE THE BOX */
+
+    .mini-class {
+      background: var(--blue-light);
+      color: #153d96;
+      border-radius: 5px;
+      padding: 3px;
+      margin-top: 3px;
+      font-size: 7.5px;
+      font-weight: 800;
+      line-height: 1.08;
+      overflow-wrap: anywhere;
+    }
+
+    .mini-class-time {
+      font-size: 6.7px;
+      opacity: 0.82;
+      margin-top: 1px;
+    }
+
+    .mini-report {
+      background: var(--red-bg);
+      color: #a71f31;
+      border: 1px solid #efadb8;
+    }
+
+    .free-label {
+      margin-top: 9px;
+      text-align: center;
+      font-size: 8px;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    /* SELECTED DAY */
+
+    .selected-day {
+      margin-top: 9px;
+      border: 1px solid var(--border);
+      background: #f9fbff;
+      border-radius: 13px;
+      padding: 11px;
+    }
+
+    .selected-date {
+      font-size: 14px;
+      font-weight: 850;
+      color: var(--blue-dark);
+    }
+
+    .selected-status {
+      margin-top: 5px;
+    }
+
+    .selected-class {
+      margin-top: 8px;
+      border-radius: 10px;
+      padding: 9px;
+      background: var(--blue-light);
+      color: #183e96;
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .selected-report {
+      background: var(--red-bg);
+      color: #a71f31;
+    }
+
+    /* SUBJECTS */
+
+    .subject-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .subject {
+      display: grid;
+      grid-template-columns: 9px 1fr auto;
+      gap: 9px;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 10px;
+      background: #fff;
+    }
+
+    .subject-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    .subject-name {
+      font-weight: 850;
+      font-size: 12px;
+    }
+
+    .subject-meta {
+      font-size: 9.5px;
+      color: var(--gray);
+      line-height: 1.35;
+      margin-top: 3px;
+    }
+
+    .progress {
+      height: 5px;
+      background: #e9edf3;
+      border-radius: 999px;
+      margin-top: 6px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--blue);
+      border-radius: 999px;
+    }
+
+    /* TRIP WINDOWS */
+
+    .trip-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .trip-card {
+      border: 1px solid #bfe8ce;
+      background: linear-gradient(135deg, #fff, #f0fbf5);
+      border-radius: 13px;
+      padding: 13px;
+    }
+
+    .trip-dates {
+      font-size: 15px;
+      font-weight: 850;
+    }
+
+    .trip-days {
+      margin-top: 4px;
+      color: #25774c;
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .trip-note {
+      margin-top: 7px;
+      color: var(--gray);
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    /* SCHEDULE */
+
+    .schedule-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .schedule-item {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 9px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .schedule-date {
+      font-size: 11px;
+      font-weight: 850;
+      color: var(--blue-dark);
+    }
+
+    .schedule-main {
+      min-width: 0;
+    }
+
+    .schedule-course {
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .schedule-meta {
+      font-size: 9.5px;
+      color: var(--gray);
+      margin-top: 2px;
+    }
+
+    /* DESKTOP */
+
+    @media (min-width: 800px) {
+      header {
+        padding: 28px 30px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      main {
+        width: min(1200px, calc(100% - 40px));
+        margin-top: 24px;
+      }
+
+      .kpis {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 13px;
+      }
+
+      .kpi {
+        padding: 17px;
+      }
+
+      .dashboard {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr;
+        gap: 17px;
+      }
+
+      .trip-list {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .day {
+        min-height: 120px;
+      }
+
+      .mini-class {
+        font-size: 9px;
+      }
+
+      .mini-class-time {
+        font-size: 7.5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <h1>GLOBIS MBA — Module 1</h1>
+
+    <div class="subtitle">
+      Tokyo • Visual Academic Calendar • IST → JST
+    </div>
+
+    <div class="clock-card">
+      <div class="clock-label">Your device local time</div>
+      <div id="localClock" class="clock-time">--:--:--</div>
+      <div id="localDate" class="clock-date">Loading...</div>
+
+      <div style="height:7px"></div>
+
+      <div class="clock-label">Tokyo / JST</div>
+      <div id="tokyoClock" class="clock-time">--:--:--</div>
+      <div id="tokyoDate" class="clock-date">Loading...</div>
+    </div>
+
+  </div>
+</header>
+
+
+<main>
+
+  <!-- OVERVIEW -->
+
+  <section class="section">
+
+    <div class="kpis">
+
+      <div class="kpi">
+        <div class="kpi-number">6</div>
+        <div class="kpi-label">Subjects</div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-number">36</div>
+        <div class="kpi-label">Class Sessions</div>
+      </div>
+
+      <div class="kpi">
+        <div id="finishedCount" class="kpi-number">0</div>
+        <div class="kpi-label">Finished Sessions</div>
+      </div>
+
+      <div class="kpi">
+        <div id="upcomingCount" class="kpi-number">0</div>
+        <div class="kpi-label">Upcoming Sessions</div>
+      </div>
+
+      <div class="kpi">
+        <div id="freeDaysCount" class="kpi-number">0</div>
+        <div class="kpi-label">2+ Day Trip Windows</div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- LEGEND -->
+
+  <section class="section">
+
+    <div class="section-title">
+      <h2>Workload Overview</h2>
+
+      <div class="legend">
+        <span class="pill green">GREEN · 2+ CLEAR DAYS</span>
+        <span class="pill yellow">YELLOW · 1 DAY</span>
+        <span class="pill red">RED · CLASS / REPORT</span>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- CALENDAR -->
+
+  <section class="section">
+
+    <div class="card">
+
+      <div class="calendar-navigation">
+
+        <button
+          class="calendar-button"
+          onclick="changeMonth(-1)"
+          aria-label="Previous month"
+        >
+          ←
+        </button>
+
+        <div id="calendarTitle" class="calendar-title">
+          October 2026
+        </div>
+
+        <button
+          class="calendar-button"
+          onclick="changeMonth(1)"
+          aria-label="Next month"
+        >
+          →
+        </button>
+
+      </div>
+
+
+      <div class="calendar-grid">
+
+        <div class="weekday">MON</div>
+        <div class="weekday">TUE</div>
+        <div class="weekday">WED</div>
+        <div class="weekday">THU</div>
+        <div class="weekday">FRI</div>
+        <div class="weekday">SAT</div>
+        <div class="weekday">SUN</div>
+
+      </div>
+
+      <div
+        id="calendar"
+        class="calendar-grid"
+      ></div>
+
+
+      <div
+        id="selectedDay"
+        class="selected-day"
+      ></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SUBJECTS -->
+
+  <section class="section">
+
+    <div class="section-title">
+      <h2>Subjects</h2>
+    </div>
+
+    <div
+      id="subjects"
+      class="subject-list"
+    ></div>
+
+  </section>
+
+
+  <!-- TRIP WINDOWS -->
+
+  <section class="section">
+
+    <div class="section-title">
+      <h2>✈️ Trip Windows</h2>
+    </div>
+
+    <div
+      id="trips"
+      class="trip-list"
+    ></div>
+
+  </section>
+
+
+  <!-- SCHEDULE -->
+
+  <section class="section">
+
+    <div class="section-title">
+      <h2>Module 1 Schedule</h2>
+    </div>
+
+    <div
+      id="schedule"
+      class="schedule-list"
+    ></div>
+
+  </section>
+
+</main>
+
+
+<script>
+
+  /*
+  ============================================================
+  GLOBIS MODULE 1 DATA
+  ============================================================
+  */
+
+  const COURSES = [
+
+    {
+      name: "Essentials of Finance",
+      short: "Finance",
+      day: "Thursday",
+      time: "10:00–13:00 JST",
+      room: "405",
+      dates: [
+        "2026-10-01",
+        "2026-10-08",
+        "2026-10-15",
+        "2026-10-22",
+        "2026-10-29",
+        "2026-11-05"
+      ],
+
+      /*
+        E = no Day-4 report
+        Change to true and add reportDate if needed.
+      */
+      report: false,
+      reportDate: null
+    },
+
+
+    {
+      name: "Human Resource Management",
+      short: "HRM",
+      day: "Monday",
+      time: "10:00–13:00 JST",
+      room: "405",
+      dates: [
+        "2026-10-05",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-26",
+        "2026-11-02",
+        "2026-11-09"
+      ],
+      report: false,
+      reportDate: null
+    },
+
+
+    {
+      name: "Marketing",
+      short: "Marketing",
+      day: "Monday",
+      time: "14:00–17:00 JST",
+      room: "402",
+      dates: [
+        "2026-10-05",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-26",
+        "2026-11-02",
+        "2026-11-09"
+      ],
+      report: false,
+      reportDate: null
+    },
+
+
+    {
+      name: "Strategy",
+      short: "Strategy",
+      day: "Tuesday",
+      time: "10:00–13:00 JST",
+      room: "404",
+      dates: [
+        "2026-10-06",
+        "2026-10-13",
+        "2026-10-20",
+        "2026-10-27",
+        "2026-11-03",
+        "2026-11-10"
+      ],
+      report: false,
+      reportDate: null
+    },
+
+
+    {
+      name: "Business Analytics",
+      short: "Analytics",
+      day: "Tuesday",
+      time: "14:00–17:00 JST",
+      room: "404",
+      dates: [
+        "2026-10-06",
+        "2026-10-13",
+        "2026-10-20",
+        "2026-10-27",
+        "2026-11-03",
+        "2026-11-10"
+      ],
+      report: false,
+      reportDate: null
+    },
+
+
+    {
+      name: "Leadership Development, Ethics & Values",
+      short: "Leadership",
+      day: "Thursday",
+      time: "10:00–13:00 JST",
+      room: "403",
+      dates: [
+        "2026-10-01",
+        "2026-10-08",
+        "2026-10-15",
+        "2026-10-22",
+        "2026-10-29",
+        "2026-11-05"
+      ],
+      report: false,
+      reportDate: null
+    }
+
+  ];
+
+
+  /*
+  ============================================================
+  DATE / TIME
+  ============================================================
+  */
+
+  const MODULE_START = "2026-10-01";
+  const MODULE_END   = "2026-11-10";
+
+  let currentMonth = new Date(2026, 9, 1);
+
+
+  function pad(number) {
+    return String(number).padStart(2, "0");
+  }
+
+
+  function isoDate(date) {
+    return [
+      date.getFullYear(),
+      pad(date.getMonth() + 1),
+      pad(date.getDate())
+    ].join("-");
+  }
+
+
+  function dateOnly(iso) {
+    return new Date(iso + "T00:00:00");
+  }
+
+
+  function formatDate(iso) {
+    return dateOnly(iso).toLocaleDateString(
+      "en-US",
+      {
+        weekday: "short",
+        month: "short",
+        day: "numeric"
+      }
+    );
+  }
+
+
+  function formatLongDate(iso) {
+    return dateOnly(iso).toLocaleDateString(
+      "en-US",
+      {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+      }
+    );
+  }
+
+
+  /*
+  ============================================================
+  BUILD EVENTS
+  ============================================================
+  */
+
+  const EVENTS = [];
+
+
+  COURSES.forEach(course => {
+
+    course.dates.forEach((date, index) => {
+
+      EVENTS.push({
+
+        date: date,
+
+        course: course.short,
+
+        fullCourse: course.name,
+
+        time: course.time,
+
+        room: course.room,
+
+        classNumber: index + 1,
+
+        report: false
+
+      });
+
+    });
+
+
+    if (course.report && course.reportDate) {
+
+      EVENTS.push({
+
+        date: course.reportDate,
+
+        course: course.short + " REPORT",
+
+        fullCourse: course.name,
+
+        time: "REPORT DEADLINE",
+
+        room: "—",
+
+        classNumber: null,
+
+        report: true
+
+      });
+
+    }
+
+  });
+
+
+  /*
+  ============================================================
+  EVENT LOOKUP
+  ============================================================
+  */
+
+  function eventsOn(date) {
+    return EVENTS.filter(event => event.date === date);
+  }
+
+
+  function nextClassAfter(date) {
+
+    const future = EVENTS
+      .filter(event => event.date > date)
+      .sort((a,b) => a.date.localeCompare(b.date));
+
+    return future.length
+      ? dateOnly(future[0].date)
+      : null;
+  }
+
+
+  /*
+  ============================================================
+  COLOR STATUS
+  ============================================================
+  */
+
+  function getStatus(date) {
+
+    const iso = isoDate(date);
+    const today = isoDate(new Date());
+
+    const classes = eventsOn(iso);
+
+    if (iso < today) {
+      return "finished";
+    }
+
+    if (classes.length > 0) {
+      return classes.some(x => x.report)
+        ? "red"
+        : "red";
+    }
+
+    const next = nextClassAfter(iso);
+
+    if (!next) {
+      return "green";
+    }
+
+    const difference =
+      Math.round(
+        (next.getTime() - date.getTime()) /
+        (1000 * 60 * 60 * 24)
+      );
+
+    const clearDays = difference - 1;
+
+    if (clearDays >= 2) {
+      return "green";
+    }
+
+    if (clearDays === 1) {
+      return "yellow";
+    }
+
+    return "red";
+  }
+
+
+  /*
+  ============================================================
+  CALENDAR
+  ============================================================
+  */
+
+  function renderCalendar() {
+
+    const calendar =
+      document.getElementById("calendar");
+
+    calendar.innerHTML = "";
+
+    const year =
+      currentMonth.getFullYear();
+
+    const month =
+      currentMonth.getMonth();
+
+
+    document.getElementById("calendarTitle").textContent =
+      currentMonth.toLocaleDateString(
+        "en-US",
+        {
+          month: "long",
+          year: "numeric"
+        }
+      );
+
+
+    const first =
+      new Date(year, month, 1);
+
+
+    const last =
+      new Date(year, month + 1, 0);
+
+
+    /*
+      Monday = 0
+      Sunday = 6
+    */
+
+    const startOffset =
+      (first.getDay() + 6) % 7;
+
+
+    const totalCells =
+      Math.ceil(
+        (startOffset + last.getDate()) / 7
+      ) * 7;
+
+
+    const today =
+      isoDate(new Date());
+
+
+    for (let i = 0; i < totalCells; i++) {
+
+      const number =
+        i - startOffset + 1;
+
+
+      const date =
+        new Date(year, month, number);
+
+
+      const iso =
+        isoDate(date);
+
+
+      const inCurrentMonth =
+        date.getMonth() === month;
+
+
+      const day =
+        document.createElement("div");
+
+
+      let status = "";
+
+      if (inCurrentMonth) {
+        status = getStatus(date);
+      }
+
+
+      day.className =
+        "day " +
+        (!inCurrentMonth ? "outside " : "") +
+        status;
+
+
+      if (iso === today) {
+        day.classList.add("today");
+      }
+
+
+      day.dataset.date = iso;
+
+
+      let content =
+        `<div class="day-number">${date.getDate()}</div>`;
+
+
+      const dayEvents =
+        eventsOn(iso);
+
+
+      dayEvents.forEach(event => {
+
+        const shortTime =
+          event.time
+            .replace(" JST", "")
+            .replace("10:00–13:00", "10–13")
+            .replace("14:00–17:00", "14–17");
+
+
+        content += `
+
+          <div class="mini-class ${event.report ? "mini-report" : ""}">
+
+            <div>${event.course}</div>
+
+            <div class="mini-class-time">
+              ${event.report
+                ? "⚠ REPORT"
+                : `${shortTime} • ${event.room}`}
+            </div>
+
+          </div>
+
+        `;
+      });
+
+
+      if (
+        inCurrentMonth &&
+        dayEvents.length === 0 &&
+        status !== "finished"
+      ) {
+
+        let label = "";
+
+        if (status === "green") {
+          label = "REST / TRIP";
+        } else if (status === "yellow") {
+          label = "1 DAY";
+        } else {
+          label = "RED";
+        }
+
+        content += `
+          <div class="free-label">
+            ${label}
+          </div>
+        `;
+
+      }
+
+
+      day.innerHTML = content;
+
+
+      day.addEventListener(
+        "click",
+        () => selectDay(iso)
+      );
+
+
+      calendar.appendChild(day);
+
+    }
+
+
+    /*
+      Auto-select first day of current month
+      or today if we're viewing today's month.
+    */
+
+    const todayDate =
+      new Date();
+
+    if (
+      todayDate.getFullYear() === year &&
+      todayDate.getMonth() === month
+    ) {
+
+      selectDay(isoDate(todayDate));
+
+    } else {
+
+      selectDay(
+        isoDate(
+          new Date(year, month, 1)
+        )
+      );
+
+    }
+
+  }
+
+
+  function selectDay(iso) {
+
+    document
+      .querySelectorAll(".day")
+      .forEach(day => {
+        day.classList.remove("today-selected");
+      });
+
+
+    const selected =
+      document.querySelector(
+        `.day[data-date="${iso}"]`
+      );
+
+
+    if (selected) {
+      selected.classList.add("today-selected");
+      selected.scrollIntoView({
+        block: "nearest",
+        behavior: "smooth"
+      });
+    }
+
+
+    const panel =
+      document.getElementById("selectedDay");
+
+
+    const dayEvents =
+      eventsOn(iso);
+
+
+    const status =
+      getStatus(dateOnly(iso));
+
+
+    let statusClass = "gray";
+
+    if (status === "green") {
+      statusClass = "green";
+    } else if (status === "yellow") {
+      statusClass = "yellow";
+    } else if (status === "red") {
+      statusClass = "red";
+    }
+
+
+    let html = `
+
+      <div class="selected-date">
+        ${formatLongDate(iso)}
+      </div>
+
+      <div class="selected-status">
+        <span class="pill ${statusClass}">
+          ${status === "green"
+            ? "GREEN · 2+ CLEAR DAYS"
+            : status === "yellow"
+              ? "YELLOW · 1 CLEAR DAY"
+              : status === "red"
+                ? "RED · CLASS / REPORT"
+                : "FINISHED"}
+        </span>
+      </div>
+
+    `;
+
+
+    if (dayEvents.length === 0) {
+
+      html += `
+
+        <div style="
+          margin-top:8px;
+          color:#6c7890;
+          font-size:10px;
+        ">
+          No class scheduled.
+          Potential rest / travel day.
+        </div>
+
+      `;
+
+    } else {
+
+      dayEvents.forEach(event => {
+
+        html += `
+
+          <div class="selected-class ${
+            event.report ? "selected-report" : ""
+          }">
+
+            <b>${event.fullCourse}</b><br>
+
+            ${
+              event.report
+
+              ? "⚠ Day-4 Report Deadline"
+
+              : `${event.time} • Room ${event.room}`
+            }
+
+          </div>
+
+        `;
+
+      });
+
+    }
+
+
+    panel.innerHTML = html;
+
+  }
+
+
+  function changeMonth(offset) {
+
+    currentMonth =
+      new Date(
+        currentMonth.getFullYear(),
+        currentMonth.getMonth() + offset,
+        1
+      );
+
+    renderCalendar();
+
+  }
+
+
+  /*
+  ============================================================
+  SUBJECT DASHBOARD
+  ============================================================
+  */
+
+  function renderSubjects() {
+
+    const container =
+      document.getElementById("subjects");
+
+    container.innerHTML = "";
+
+    const today =
+      isoDate(new Date());
+
+
+    COURSES.forEach(course => {
+
+      const finished =
+        course.dates.filter(
+          date => date < today
+        ).length;
+
+
+      const percentage =
+        Math.round(
+          finished /
+          course.dates.length *
+          100
+        );
+
+
+      const next =
+        course.dates.find(
+          date => date >= today
+        );
+
+
+      container.innerHTML += `
+
+        <div class="subject">
+
+          <div class="subject-dot"></div>
+
+          <div>
+
+            <div class="subject-name">
+              ${course.name}
+            </div>
+
+            <div class="subject-meta">
+              ${course.day}
+              • ${course.time}
+              • Room ${course.room}
+              • ${course.report ? "REPORT" : "E"}
+            </div>
+
+            <div class="progress">
+
+              <div
+                class="progress-bar"
+                style="width:${percentage}%"
+              ></div>
+
+            </div>
+
+          </div>
+
+          <span class="pill ${
+            next ? "green" : "gray"
+          }">
+
+            ${
+              next
+              ? formatDate(next)
+              : "DONE"
+            }
+
+          </span>
+
+        </div>
+
+      `;
+
+    });
+
+  }
+
+
+  /*
+  ============================================================
+  TRIP WINDOWS
+  ============================================================
+  */
+
+  function calculateTripWindows() {
+
+    const windows = [];
+
+    let current = dateOnly(MODULE_START);
+    const end = dateOnly(MODULE_END);
+
+
+    while (current <= end) {
+
+      const iso =
+        isoDate(current);
+
+
+      if (eventsOn(iso).length === 0) {
+
+        const start =
+          new Date(current);
+
+
+        while (
+          current <= end &&
+          eventsOn(isoDate(current)).length === 0
+        ) {
+
+          current.setDate(
+            current.getDate() + 1
+          );
+
+        }
+
+
+        const finish =
+          new Date(current);
+
+
+        finish.setDate(
+          finish.getDate() - 1
+        );
+
+
+        const length =
+          Math.round(
+            (
+              finish.getTime() -
+              start.getTime()
+            ) /
+            (1000 * 60 * 60 * 24)
+          ) + 1;
+
+
+        if (length >= 2) {
+
+          windows.push({
+            start: isoDate(start),
+            end: isoDate(finish),
+            length: length
+          });
+
+        }
+
+      } else {
+
+        current.setDate(
+          current.getDate() + 1
+        );
+
+      }
+
+    }
+
+    return windows;
+
+  }
+
+
+  function renderTripWindows() {
+
+    const container =
+      document.getElementById("trips");
+
+    const windows =
+      calculateTripWindows();
+
+
+    document.getElementById(
+      "freeDaysCount"
+    ).textContent = windows.length;
+
+
+    container.innerHTML = "";
+
+
+    windows.forEach(window => {
+
+      container.innerHTML += `
+
+        <div class="trip-card">
+
+          <div class="trip-dates">
+
+            ${formatDate(window.start)}
+            →
+            ${formatDate(window.end)}
+
+          </div>
+
+          <div class="trip-days">
+
+            🟢 ${window.length}
+            full class-free days
+
+          </div>
+
+          <div class="trip-note">
+
+            Good candidate for travel.
+            Return with enough buffer before
+            the next class.
+
+          </div>
+
+        </div>
+
+      `;
+
+    });
+
+  }
+
+
+  /*
+  ============================================================
+  FULL SCHEDULE
+  ============================================================
+  */
+
+  function renderSchedule() {
+
+    const container =
+      document.getElementById("schedule");
+
+
+    const sorted =
+      [...EVENTS].sort(
+        (a,b) =>
+          a.date.localeCompare(b.date)
+      );
+
+
+    container.innerHTML = "";
+
+
+    sorted.forEach(event => {
+
+      container.innerHTML += `
+
+        <div class="schedule-item">
+
+          <div class="schedule-date">
+            ${formatDate(event.date)}
+          </div>
+
+          <div class="schedule-main">
+
+            <div class="schedule-course">
+
+              ${event.fullCourse}
+
+            </div>
+
+            <div class="schedule-meta">
+
+              ${
+                event.report
+
+                ? "⚠ Day-4 Report"
+
+                : `${event.time} • Room ${event.room}`
+              }
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+    });
+
+  }
+
+
+  /*
+  ============================================================
+  LIVE CLOCK
+  ============================================================
+  */
+
+  function updateClocks() {
+
+    /*
+      IMPORTANT:
+
+      new Date() reads the device's current local time.
+
+      This means when opened in Safari on your iPhone,
+      it uses the iPhone's own clock/timezone.
+
+      Tokyo time is calculated separately using
+      Asia/Tokyo.
+    */
+
+    const now =
+      new Date();
+
+
+    /*
+      DEVICE LOCAL TIME
+    */
+
+    document.getElementById(
+      "localClock"
+    ).textContent =
+      new Intl.DateTimeFormat(
+        "en-US",
+        {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true
+        }
+      ).format(now);
+
+
+    document.getElementById(
+      "localDate"
+    ).textContent =
+      new Intl.DateTimeFormat(
+        "en-US",
+        {
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+          year: "numeric"
+        }
+      ).format(now);
+
+
+    /*
+      TOKYO / JST
+    */
+
+    document.getElementById(
+      "tokyoClock"
+    ).textContent =
+      new Intl.DateTimeFormat(
+        "en-US",
+        {
+          timeZone: "Asia/Tokyo",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false
+        }
+      ).format(now);
+
+
+    document.getElementById(
+      "tokyoDate"
+    ).textContent =
+      new Intl.DateTimeFormat(
+        "en-US",
+        {
+          timeZone: "Asia/Tokyo",
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+          year: "numeric"
+        }
+      ).format(now);
+
+  }
+
+
+  /*
+  ============================================================
+  KPI
+  ============================================================
+  */
+
+  function updateKPIs() {
+
+    const today =
+      isoDate(new Date());
+
+
+    const finished =
+      EVENTS.filter(
+        event =>
+          event.date < today &&
+          !event.report
+      ).length;
+
+
+    const upcoming =
+      EVENTS.filter(
+        event =>
+          event.date >= today &&
+          !event.report
+      ).length;
+
+
+    document.getElementById(
+      "finishedCount"
+    ).textContent = finished;
+
+
+    document.getElementById(
+      "upcomingCount"
+    ).textContent = upcoming;
+
+  }
+
+
+  /*
+  ============================================================
+  INITIALISE
+  ============================================================
+  */
+
+  renderCalendar();
+  renderSubjects();
+  renderTripWindows();
+  renderSchedule();
+  updateKPIs();
+  updateClocks();
+
+
+  /*
+    Update the clock every second.
+
+    Also update immediately when Safari comes
+    back from the background.
+  */
+
+  setInterval(
+    updateClocks,
+    1000
+  );
+
+
+  document.addEventListener(
+    "visibilitychange",
+    updateClocks
+  );
+
+
+  window.addEventListener(
+    "pageshow",
+    updateClocks
+  );
+
+</script>
+
+</body>
+</html>
